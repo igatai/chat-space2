@@ -32,7 +32,10 @@ $chat-main_bottom-height: 90px;
         &__icon {
           display: flex;
           &__edit {
-
+            i.fas.fa-edit {
+              padding-left:10px;
+              color:white;
+            }
           }
           &__settings {
             i.fas.fa-.fa-cog {
