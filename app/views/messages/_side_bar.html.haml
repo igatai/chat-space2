@@ -4,10 +4,8 @@
       .side-bar__user-name__top-items__name
         = current_user.name
       .side-bar__user-name__top-items__icon
-        .side-bar__user-name__top-items__icon__edit
-          = icon('fas',' fa-edit')
-        .side-bar__user-name__top-items__icon__settings
-          = link_to icon('fas',' fa-cog'), edit_user_path(current_user)
+        = link_to icon('fas',' fa-edit'), new_group_path, class: 'side-bar__user-name__top-items__icon__edit'
+        = link_to icon('fas',' fa-cog'), edit_user_path(current_user), class: 'side-bar__user-name__top-items__icon__settings'
   .side-bar__group-ul
     .side-bar__group-ul__list
       .side-bar__group-ul__list__group-name
