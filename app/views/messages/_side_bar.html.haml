@@ -7,8 +7,9 @@
         = link_to icon('fas',' fa-edit'), new_group_path, class: 'side-bar__user-name__top-items__icon__edit'
         = link_to icon('fas',' fa-cog'), edit_user_path(current_user), class: 'side-bar__user-name__top-items__icon__settings'
   .side-bar__group-ul
-    .side-bar__group-ul__list
-      .side-bar__group-ul__list__group-name
-        techcamp
-      .side-bar__group-ul__list__last-message
-        まだメッセージはありません
+    - current_user.groups.each do |group|
+      .side-bar__group-ul__list
+        .side-bar__group-ul__list__group-name
+          = link_to group.name
+        .side-bar__group-ul__list__last-message
+          メッセージはまだありません。
