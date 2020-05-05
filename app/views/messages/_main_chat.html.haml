@@ -2,20 +2,27 @@
   .chat-main__group-info
     .chat-main__group-info__left
       .chat-main__group-info__left__group-name
-        testgroup
+        = @group.name
       .chat-main__group-info__left__group-member
         .chat-main__group-info__left__group-member__title
-          Member:
+          = 'Member:'
         .chat-main__group-info__left__group-member__value
-          masa
+          - @group.user.each do |u|
+            = u.name
     .chat-main__group-info__right
       edit
   .chat-main__message-list
+    = render @messages
+    -# render partial: 'message', collection: @messages
   .chat-main__message-form
-    .chat-main__message-form__text-area
-      .chat-main__message-form__text-area__message
-        type a message
-      %label.chat-main__message-form__text-area__image
-        = icon('fas', ' fa-image')
-        %input.hidden{type: "file"}
-    .chat-main__message-form__button
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'chat-main__message-form__text-area', placeholder: 'type a message'
+        = f.label :image, class: 'chat-main__message-form__image' do
+          = icon('fas','image', class: 'icon')
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'chat-main__message-form__submit'
+
+    -#   %label.chat-main__message-form__text-area__image
+    -#     = icon('fas', ' fa-image')
+    -#     %input.hidden{type: "file"}
+    -# .chat-main__message-form__button

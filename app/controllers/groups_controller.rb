@@ -20,6 +20,7 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
+    redirect_to 
   end
 
   def update
@@ -31,9 +32,18 @@ class GroupsController < ApplicationController
     end
   end
 
+  def show
+    @group = Group.find(params[:id])
+    @messages = Message.where(group_id: @group.id)
+    @member = @group.users
+  end
+
   private
   def group_params
     params.require(:group).permit(:name, user_ids: [] )
   end
 
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
 end
