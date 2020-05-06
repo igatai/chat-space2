@@ -9,6 +9,8 @@
 |email|string|null: false|
 |password|string|null: false|
 |name|string|null: false,index: true|
+|group|references|null: false,foreign_key: true|
+|group|references|null: false,foreign_key: true|
 
 ##### Association
 - has_many :group_users
