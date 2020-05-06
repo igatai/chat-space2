@@ -8,6 +8,9 @@ class GroupsController < ApplicationController
     @group.users << current_user
   end
 
+  def show
+  end
+
   def create
     # binding.pry
     @group = Group.new(group_params)
@@ -25,24 +28,20 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      redirect_to group_path, notice: 'グループを更新しました'
+      redirect_to group_messages_path(@group), notice: 'グループを更新しました'
     else
       render :edit
     end
   end
 
-  def show
-    @group = Group.find(params[:id])
-    @messages = Message.where(group_id: @group.id)
-    @member = @group.users
-  end
+  # def show
+  #   @group = Group.find(params[:id])
+  #   @messages = Message.where(group_id: @group.id)
+  #   @member = @group.users
+  # end
 
   private
   def group_params
     params.require(:group).permit(:name, user_ids: [] )
-  end
-
-  def set_group
-    @group = Group.find(params[:group_id])
   end
 end

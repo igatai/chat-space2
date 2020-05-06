@@ -7,22 +7,17 @@
         .chat-main__group-info__left__group-member__title
           = 'Member:'
         .chat-main__group-info__left__group-member__value
-          - @group.user.each do |u|
-            = u.name
-    .chat-main__group-info__right
-      edit
+          - @group.users.each do |user|
+            = user.name
+    -# .chat-main__group-info__right
+    = link_to 'edit', edit_group_path(@group), class: 'chat-main__group-info__right'
   .chat-main__message-list
     = render @messages
     -# render partial: 'message', collection: @messages
   .chat-main__message-form
     = form_for [@group, @message] do |f|
       = f.text_field :content, class: 'chat-main__message-form__text-area', placeholder: 'type a message'
-        = f.label :image, class: 'chat-main__message-form__image' do
-          = icon('fas','image', class: 'icon')
-          = f.file_field :image, class: 'hidden'
+      = f.label :image, class: 'chat-main__message-form__image' do
+        = icon('fas','image', class: 'icon')
+        = f.file_field :image, class: 'hidden'
       = f.submit 'Send', class: 'chat-main__message-form__submit'
-
-    -#   %label.chat-main__message-form__text-area__image
-    -#     = icon('fas', ' fa-image')
-    -#     %input.hidden{type: "file"}
-    -# .chat-main__message-form__button
