@@ -12,7 +12,6 @@ class MessagesController < ApplicationController
         # format.html { redirect_to group_messages_path, notice: 'メッセージが送信されました' }
         format.json
       end
-      # redirect_to group_messages_path(@group), notice: 'メッセージが送信されました'
     else
       @messages = @group.messages.includes(:user)
       flash.now[:alert] = 'メッセーを入力してください'
@@ -26,7 +25,6 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:content, :image).merge(user_id: current_user.id )
   end
   def set_group
-    # binding.pry
     @group = Group.find(params[:group_id])
   end
 end
