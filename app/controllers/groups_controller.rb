@@ -12,7 +12,6 @@ class GroupsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @group = Group.new(group_params)
     if @group.save
       redirect_to root_path, notice: 'グループを作成しました'
@@ -33,12 +32,6 @@ class GroupsController < ApplicationController
       render :edit
     end
   end
-
-  # def show
-  #   @group = Group.find(params[:id])
-  #   @messages = Message.where(group_id: @group.id)
-  #   @member = @group.users
-  # end
 
   private
   def group_params
